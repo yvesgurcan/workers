@@ -25,6 +25,15 @@ module.exports = () => ({
     module: {
         rules: [
             {
+                test: /webWorkers/,
+                use: {
+                    loader: 'worker-loader',
+                    options: {
+                        name: 'webWorker-[name]-[hash].[ext]',
+                    },
+                },
+            },
+            {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {

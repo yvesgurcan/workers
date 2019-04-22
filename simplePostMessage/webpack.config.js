@@ -57,22 +57,6 @@ module.exports = () => ({
                     },
                 ],
             },
-            /*
-            {
-                test: /\.png$/,
-                use: 'url-loader?mimetype=image/png',
-            },
-            {
-                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-                use: [{
-                    loader: 'url-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        outputPath: 'assets/',
-                    },
-                }],
-            },
-            */
         ],
     },
     plugins,

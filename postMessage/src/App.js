@@ -6,20 +6,23 @@ import { createImage } from '../lib/createImage';
 
 const MAIN_THREAD = 'mainThread';
 
+const WORKER_MESSAGES = {
+    0: {
+        type: 'SAY_HI',
+    },
+    1: {
+        type: 'COUNT_TO_1000',
+    },
+    2: {
+        type: 'CREATE_RANDOM_IMAGE',
+        height: 2800,
+        width: 2800,
+    }
+}
+
 export default class App extends Component {
     state = {
         responses: [],
-        workerMessages: {
-            0: {
-                type: 'SAY_HI',
-            },
-            1: {
-                type: 'COUNT_TO_1000',
-            },
-            2: {
-                type: 'CREATE_RANDOM_IMAGE',
-            }
-        }
     }
 
     componentDidMount() {
@@ -32,52 +35,41 @@ export default class App extends Component {
         }
     }
 
+    startTimer() {
+        this.setState(() => ({ start: Date.now() }));
+
+        setInterval(() => this.setState(prevState => ({
+            time: Date.now() - prevState.start
+        })), 10);
+    }
+
     sendMessage = (i) => {
-        if (i === 2) {
-            this.setState(prevState => ({
-                responses: {
-                    ...prevState.responses,
-                    [i]: undefined
-                },
-                workerMessages: {
-                    ...prevState.workerMessages,
-                    [i]: {
-                        ...prevState.workerMessages[i],
-                        height: 2800,
-                        width: 2800,
-                    },
-                }
-            }), () => {
-                const { workerMessages } = this.state;
-                console.log(MAIN_THREAD, 'send message', { message: workerMessages[i] })
-                this[`webWorker${i}`].postMessage(workerMessages[i])
-            })
-        } else {
-            this.setState(prevState => ({
-                responses: {
-                    ...prevState.responses,
-                    [i]: undefined
-                }
-            }))
-            const { workerMessages } = this.state;
-            console.log(MAIN_THREAD, 'send message', { message: workerMessages[i] })
-            this[`webWorker${i}`].postMessage(workerMessages[i])
+        if ("Worker" in window) {
+            this.deleteResponse(i);
+            console.log(MAIN_THREAD, 'send message', { message: WORKER_MESSAGES[i] });
+            this[`webWorker${i}`].postMessage(WORKER_MESSAGES[i]);
         }
     }
 
-    handleResponse = (event) => {
-        console.log(MAIN_THREAD, 'received response', { data: event.data })
-        this.setState(prevState => {
-            let image = undefined;
-            if (!event.data.error && event.data.type === 'CREATE_RANDOM_IMAGE') {
-                image = URL.createObjectURL(event.data.output)
+    deleteResponse = (i) => {
+        this.setState(prevState => ({
+            responses: {
+                ...prevState.responses,
+                [i]: undefined
             }
+        }))
+    }
 
+    handleResponse = (event) => {
+        const { data } = event;
+        console.log(MAIN_THREAD, 'received response', { data });
+        this.setState(prevState => {
+            const image = this.getImageBlob(data);
             return {
                 responses: {
                     ...prevState.responses,
-                    [event.data.workerId]: {
-                        payload: event.data,
+                    [data.workerId]: {
+                        payload: data,
                         image
                     }
                 },
@@ -85,58 +77,44 @@ export default class App extends Component {
         })
     }
 
-    executeInMainThread = (i, message) => {
+    executeInMainThread = async (i) => {
+        this.deleteResponse(i);
         this.setState(prevState => ({
             responses: {
                 ...prevState.responses,
                 [i]: undefined
             },
-            workerMessages: {
-                ...prevState.workerMessages,
-                [i]: {
-                    ...prevState.workerMessages[i],
-                    height: 2800,
-                    width: 2800,
+        }));
+
+        console.log(MAIN_THREAD, 'executing script in main thread', { message: WORKER_MESSAGES[i] });
+
+        const result = await createImage(WORKER_MESSAGES[i]);
+
+        this.setState(prevState => {
+            let image = this.getImageBlob(result);
+            return {
+                responses: {
+                    ...prevState.responses,
+                    [i]: {
+                        payload: result,
+                        image
+                    }
                 },
             }
-        }), async () => {
-            const { workerMessages } = this.state;
-            console.log(MAIN_THREAD, 'executing script in main thread', { message: workerMessages[i] })
-
-            const result = await createImage(workerMessages[i])
-
-            this.setState(prevState => {
-                console.log({ result })
-                let image = undefined;
-                if (result.output) {
-                    image = URL.createObjectURL(result.output);
-                }
-                return {
-                    responses: {
-                        ...prevState.responses,
-                        [i]: {
-                            payload: result,
-                            image
-                        }
-                    },
-                }
-            })
         })
-
     }
 
-    startTimer() {
-        this.setState(prevState => ({
-            start: Date.now()
-        }))
-        this.timer = setInterval(() => this.setState(prevState => ({
-            time: Date.now() - prevState.start
-        })), 0.1);
-    }
+    getImageBlob = (data) => {
+        let image = undefined;
+        if (!data.error && data.type === 'CREATE_RANDOM_IMAGE') {
+            image = URL.createObjectURL(data.output);
+        }
 
+        return image;
+    }
 
     render() {
-        const { workerMessages, responses, time } = this.state;
+        const { responses, time } = this.state;
         return (
             <Fragment>
                 <h1>Send and receive messages from your Web Workers</h1>
@@ -146,7 +124,7 @@ export default class App extends Component {
                         <WorkerInterace
                             key={i}
                             i={i}
-                            message={workerMessages[i]}
+                            message={WORKER_MESSAGES[i]}
                             sendMessage={() => this.sendMessage(i)}
                             response={responses[i]}
                             executeInMainThread={i === 2 ? (message) => this.executeInMainThread(i, message) : null}

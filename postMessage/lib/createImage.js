@@ -43,7 +43,6 @@ export const createImage = async (message) => {
         const newCanvas = document.createElement('canvas');
         newCanvas.height = imageData.height;
         newCanvas.width = imageData.width;
-        console.log({ newCanvas })
         newCanvas.getContext('2d').putImageData(imageData, 0, 0);
         context.imageSmoothingEnabled = false;
         context.drawImage(newCanvas, 0, 0);

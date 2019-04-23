@@ -1,4 +1,4 @@
-const CACHE_NAME = 'simple-service-worker';
+const CACHE_NAME = 'service-worker-lifecycle';
 const URLS_TO_CACHE = [
     '/',
     '/main.css',
@@ -10,7 +10,11 @@ const addAllToCache = async (urls) => {
     return await cache.addAll(urls);
 }
 
-self.addEventListener('install', event => event.waitUntil(addAllToCache(URLS_TO_CACHE)));
+self.addEventListener('install', event => {
+    console.log('install');
+    self.skipWaiting();
+    return event.waitUntil(addAllToCache(URLS_TO_CACHE))
+});
 
 const handleFetchRequest = async (event) => {
     const result = await caches.match(event.request)
@@ -22,4 +26,7 @@ const handleFetchRequest = async (event) => {
     return response;
 }
 
-self.addEventListener('fetch', event => event.respondWith(handleFetchRequest(event)));
+self.addEventListener('fetch', event => {
+    console.log('fetch');
+    event.respondWith(handleFetchRequest(event));
+});

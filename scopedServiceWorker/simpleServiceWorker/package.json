@@ -1,10 +1,10 @@
 {
-    "name": "simpleserviceworker",
+    "name": "scopedserviceworker",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "TARGET=development webpack-dev-server --mode development --progress --open",
+        "start": "TARGET=development webpack-dev-server --mode development --progress",
         "build": "TARGET=build webpack src --mode production"
     },
     "author": "",

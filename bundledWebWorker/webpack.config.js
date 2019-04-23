@@ -8,7 +8,6 @@ console.log({ TARGET });
 const plugins = [
     new HtmlWebPackPlugin({
         template: 'src/index.html',
-        // filename: isProduction ? '../index.html' : 'index.html',
     }),
 ];
 

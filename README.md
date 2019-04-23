@@ -13,3 +13,5 @@ Each example is self-contained. Simply enter the directory of your choice and in
 * Bundled Web Worker: [src](./bundledWebWorker/src) | [dist](./bundledWebWorker/dist)
 
 ### Service Workers
+
+* Simple Service Worker: [src](./simpleServiceWorker/src) | [dist](./simpleServiceWorker/dist)

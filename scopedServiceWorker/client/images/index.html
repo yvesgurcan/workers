@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>images - scopedServiceWorker - Service Worker example</title>
+    </head>
+    <script>
+        if ('serviceWorker' in navigator) {
+            let swRegistered = false;
+            navigator.serviceWorker.getRegistrations(() => {
+                swRegistered = true;
+            })
+
+            if (!swRegistered) {
+                navigator.serviceWorker.register('images/imageServiceWorker.js')
+                    .then(registration => console.log('Image service worker registered.', { registration }))
+                    .catch(error => console.log('Image service worker could not register.', { error }));
+            }
+        } else {
+            console.error('Service workers are not supported.');
+        }
+    </script>
+    <body>
+        <h2>Image are cached. They load quickly.</h2>
+        <a href="../">back to root</a>
+        <div>
+            <img src="./images/img1.png" height="400" width="600">
+            <img src="./images/img2.png" height="400" width="600">
+            <img src="./images/img3.png" height="400" width="600">
+        </div>
+    </body>
+</html>

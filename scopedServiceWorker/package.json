@@ -1,0 +1,12 @@
+{
+    "name": "scopedserviceworker",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon index"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {}
+}

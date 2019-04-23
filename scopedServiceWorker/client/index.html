@@ -7,16 +7,9 @@
     </head>
     <script>
         if ('serviceWorker' in navigator) {
-            let swRegistered = false;
-            navigator.serviceWorker.getRegistrations(() => {
-                swRegistered = true;
-            })
-
-            if (!swRegistered) {
-                navigator.serviceWorker.register('globalServiceWorker.js')
-                    .then(registration => console.log('Global service worker registered.', { registration }))
-                    .catch(error => console.log('Global service worker could not register.', { error }));
-            }
+            navigator.serviceWorker.register('globalServiceWorker.js')
+                .then(registration => console.log('Global service worker registered.', { registration }))
+                .catch(error => console.log('Global service worker could not register.', { error }));
         } else {
             console.error('Service workers are not supported.');
         }

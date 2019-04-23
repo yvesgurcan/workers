@@ -8,25 +8,17 @@ export default class App extends Component {
 
     componentDidMount() {
         if ('serviceWorker' in navigator) {
-            let swRegistered = false;
-            navigator.serviceWorker.getRegistrations((registrations) => {
-                console.log({ registrations })
-                swRegistered = true;
-            })
-
-            if (!swRegistered) {
-                this.updateStatus('Registering Service Worker.');
-                navigator.serviceWorker.register('serviceWorker.js')
-                    .then(registration => {
-                        this.updateStatus('Service Worker registered.');
-                        this.listenToServiceWorker(registration);
-                        console.log('Service worker registered.', { registration })
-                    })
-                    .catch(error => {
-                        this.updateStatus('Registration failed :(');
-                        console.log('Service worker could not register.', { error })
-                    });
-            }
+            this.updateStatus('Registering Service Worker.');
+            navigator.serviceWorker.register('serviceWorker.js')
+                .then(registration => {
+                    this.updateStatus('Service Worker registered.');
+                    this.listenToServiceWorker(registration);
+                    console.log('Service worker registered.', { registration })
+                })
+                .catch(error => {
+                    this.updateStatus('Registration failed :(');
+                    console.log('Service worker could not register.', { error })
+                });
         } else {
             console.error('Service workers are not supported.');
         }
@@ -64,7 +56,6 @@ export default class App extends Component {
 
     render() {
         const { statuses } = this.state;
-        console.log({ statuses }, statuses[statuses.length - 1])
         return (
             <Fragment>
                 <h1>Service Worker lifecycle</h1>

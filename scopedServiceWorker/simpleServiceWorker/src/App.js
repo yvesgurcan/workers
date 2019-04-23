@@ -6,16 +6,9 @@ const MAIN_THREAD = 'mainThread';
 export default class App extends Component {
     componentDidMount() {
         if ('serviceWorker' in navigator) {
-            let swRegistered = false;
-            navigator.serviceWorker.getRegistrations(() => {
-                swRegistered = true;
-            })
-
-            if (!swRegistered) {
-                navigator.serviceWorker.register('serviceWorker.js')
-                    .then(registration => console.log('Service worker registered.', { registration }))
-                    .catch(error => console.log('Service worker could not register.', { error }));
-            }
+            navigator.serviceWorker.register('serviceWorker.js')
+                .then(registration => console.log('Service worker registered.', { registration }))
+                .catch(error => console.log('Service worker could not register.', { error }));
         } else {
             console.error('Service workers are not supported.');
         }

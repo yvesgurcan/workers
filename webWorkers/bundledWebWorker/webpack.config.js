@@ -24,7 +24,8 @@ module.exports = () => ({
     module: {
         rules: [
             {
-                test: /webWorkers/,
+                // handle web workers
+                test: /myWebWorkers/,
                 use: {
                     loader: 'worker-loader',
                     options: {

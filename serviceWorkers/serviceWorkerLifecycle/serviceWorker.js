@@ -12,6 +12,7 @@ const addAllToCache = async (urls) => {
 
 self.addEventListener('install', event => {
     console.log('install');
+    // wait or not wait?
     self.skipWaiting();
     return event.waitUntil(addAllToCache(URLS_TO_CACHE))
 });

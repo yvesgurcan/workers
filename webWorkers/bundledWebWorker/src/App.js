@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import MyWebWorker from './webWorkers/MyWebWorker.js';
+import MyWebWorker from './myWebWorkers/MyWebWorker.js';
 import style from './App.scss';
 
 const MAIN_THREAD = 'mainThread';

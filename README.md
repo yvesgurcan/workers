@@ -15,3 +15,5 @@ Each example is self-contained. Simply enter the directory of your choice and in
 ### Service Workers
 
 * Simple Service Worker: [src](./simpleServiceWorker/src) | [dist](./simpleServiceWorker/dist)
+* Service Worker Lifecycle: [src](./serviceWorkerLifecycle/src) | [dist](./serviceWorkerLifecycle/dist)
+* Workbox Service Worker: [src](./workboxServiceWorker/src) | [dist](./workboxServiceWorker/dist)

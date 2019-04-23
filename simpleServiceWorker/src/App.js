@@ -7,8 +7,7 @@ export default class App extends Component {
     componentDidMount() {
         if ('serviceWorker' in navigator) {
             let swRegistered = false;
-            navigator.serviceWorker.getRegistrations(registrations => {
-                console.log('registration')
+            navigator.serviceWorker.getRegistrations(() => {
                 swRegistered = true;
             })
 
@@ -18,7 +17,7 @@ export default class App extends Component {
                     .catch(error => console.log('Service worker could not register.', { error }));
             }
         } else {
-            console.log('Service workers are not supported.');
+            console.error('Service workers are not supported.');
         }
     }
     render() {

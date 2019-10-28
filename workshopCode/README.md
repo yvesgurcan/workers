@@ -1,1 +1,1 @@
-# Web Worker Workshop
+# Code for Web Worker Workshop

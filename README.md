@@ -8,13 +8,13 @@ This repository contains both a workshop on Web Workers as well as various examp
 
 Each example is self-contained. Simply enter the directory of your choice and install the dependencies (`npm i` or `yarn`).
 
-### Web Workers
+### Web Worker Examples
 
 * Simple post message: [src](./webWorkers/simplePostMessage/src) | [dist](./webWorkers/simplePostMessage/dist)
 * Post message to multiple workers: [src](./webWorkers/postMessage/src) | [dist](./webWorkers/postMessage/dist)
 * Bundled Web Worker: [src](./webWorkers/bundledWebWorker/src) | [dist](./webWorkers/bundledWebWorker/dist)
 
-### Service Workers
+### Service Worker Examples
 
 * Simple Service Worker: [src](./serviceWorkers/simpleServiceWorker/src) | [dist](./serviceWorkers/simpleServiceWorker/dist)
 * Service Worker Lifecycle: [src](./serviceWorkers/serviceWorkerLifecycle/src) | [dist](./serviceWorkers/serviceWorkerLifecycle/dist)

@@ -1,10 +1,10 @@
-# Web & Service Worker Examples
+# Web Workers & Service Workers
 
-## Usage
-
-Each example is self-contained. Simply enter the directory of your choice and install the dependencies (`npm i` or `yarn`).
+## Workshop
 
 ## Examples
+
+Each example is self-contained. Simply enter the directory of your choice and install the dependencies (`npm i` or `yarn`).
 
 ### Web Workers
 

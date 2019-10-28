@@ -2,6 +2,14 @@
 
 Bienvenue !
 
+## How does it work?
+
+## Use Cases
+
+- Create images with canvas.
+- Parse binary files.
+- Generate CSV files (maybe).
+
 ## Part A: Set up your environment
 
 ### Step 1: IDE: Visual Studio Code

@@ -12,8 +12,10 @@ Bienvenue !
 
 ## Part 2: Set up the repository
 
-### Step 1: Fork this repository
+### Step 1: Create a GitHub account
 
-### Step 2: Copy the repository locally
+### Step 2: Fork this repository on GitHub
+
+### Step 3: Copy the repository locally
 
 ## Part 3: Web worker

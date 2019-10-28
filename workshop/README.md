@@ -2,7 +2,7 @@
 
 Bienvenue !
 
-## Part 1: Set up your environment
+## Part A: Set up your environment
 
 ### Step 1: IDE: Visual Studio Code
 
@@ -10,7 +10,7 @@ Bienvenue !
 
 ### Step 3: Version Control System: git
 
-## Part 2: Set up the repository
+## Part B: Set up the repository
 
 ### Step 1: Create a GitHub account
 
@@ -18,4 +18,4 @@ Bienvenue !
 
 ### Step 3: Copy the repository locally
 
-## Part 3: Web worker
+## Part C: Web worker

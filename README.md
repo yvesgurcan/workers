@@ -1,4 +1,4 @@
-# Web Workers & Service Workers
+# Web and Service Workers
 
 This repository contains both a workshop on Web Workers as well as various examples of both Web Workers and Service Workers.
 

@@ -4,7 +4,7 @@ This repository contains both a workshop on Web Workers as well as various examp
 
 ## Workshop: Web Workers
 
-A [workshop on Web Workers](/workshop).
+[Click here for workshop instructions](/workshop).
 
 ## Examples: Web Workers and Service Workers
 

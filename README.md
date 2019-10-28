@@ -2,9 +2,9 @@
 
 This repository contains both a workshop on Web Workers as well as various examples of both Web Workers and Service Workers.
 
-## Workshop: Web Worker
+## Workshop: Web Workers
 
-## Examples: Web Worker and Service Worker
+## Examples: Web Workers and Service Workers
 
 Each example is self-contained. Simply enter the directory of your choice and install the dependencies (`npm i` or `yarn`).
 

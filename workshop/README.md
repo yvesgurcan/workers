@@ -14,9 +14,7 @@ Bienvenue !
 
 ### Step 1: Visual Studio Code
 
-Download and install Visual Studio Code.
-
-https://code.visualstudio.com/
+Download and install Visual Studio Code from here: https://code.visualstudio.com/.
 
 ### Step 2: Homebrew
 

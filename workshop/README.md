@@ -12,11 +12,44 @@ Bienvenue !
 
 ## Part A: Set up your environment
 
-### Step 1: IDE: Visual Studio Code
+### Step 1: Visual Studio Code
 
-### Step 2: Package Manager: NPM
+### Step: Homebrew
+
+Install [Homebrew](https://brew.sh/).
+
+```
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+### Step 2: NPM
+
+Install [Node](https://nodejs.org/en/) with Homebrew. NPM is included with Node.
+
+```
+brew install node
+```
+
+Check installed version of Node and NPM.
+
+```
+node -v
+npm -v
+```
 
 ### Step 3: Version Control System: git
+
+Install [Git](https://git-scm.com/) with Homebrew.
+
+```
+brew install git
+```
+
+Check installed version of Git.
+
+```
+git --version
+```
 
 ## Part B: Set up the repository
 

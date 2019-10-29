@@ -14,7 +14,11 @@ Bienvenue !
 
 ### Step 1: Visual Studio Code
 
-### Step: Homebrew
+Download and install Visual Studio Code.
+
+https://code.visualstudio.com/
+
+### Step 2: Homebrew
 
 Install [Homebrew](https://brew.sh/).
 
@@ -22,7 +26,7 @@ Install [Homebrew](https://brew.sh/).
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-### Step 2: NPM
+### Step 3: NPM
 
 Install [Node](https://nodejs.org/en/) with Homebrew. NPM is included with Node.
 
@@ -37,7 +41,7 @@ node -v
 npm -v
 ```
 
-### Step 3: Version Control System: git
+### Step 4: Version Control System: git
 
 Install [Git](https://git-scm.com/) with Homebrew.
 

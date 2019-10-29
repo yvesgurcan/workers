@@ -39,7 +39,7 @@ node -v
 npm -v
 ```
 
-### Step 4: Version Control System: git
+### Step 4: git
 
 Install [Git](https://git-scm.com/) with Homebrew.
 
@@ -52,6 +52,8 @@ Check installed version of Git.
 ```
 git --version
 ```
+
+### Step 5: GitHub
 
 ## Part B: Set up the repository
 

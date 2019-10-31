@@ -2,13 +2,20 @@
 
 Bienvenue !
 
-## How does it work?
+Follow this workshop on [Twitch](https://www.twitch.tv/yves_gurcan).
 
-## Use Cases
+## How do web workers work?
 
-- Create images with canvas.
-- Parse binary files.
-- Generate CSV files (maybe).
+We have some slides to summarize web workers in a nutshell:
+
+* [Follow the presentation live as I'm going through the slides.](https://slides.com/yvesgurcan/deck/live#)
+* or [look at the slides on your own time.](https://slides.com/yvesgurcan/deck#/)
+
+## Some use cases
+
+- [Create images with canvas.](https://github.com/yvesgurcan/workers/blob/master/webWorkers/postMessage/public/webWorker2.js)
+- [Parse binary files.](https://github.com/yvesgurcan/wadjs/tree/develop/app/webWorkers)
+- [Generate CSV files.](https://github.com/markroper/web-worker-csv-parser/blob/master/js/FileParsingWorker.js)
 
 ## Part A: Set up your environment
 

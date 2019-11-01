@@ -114,7 +114,9 @@ In the `workshop/` directory, you will find a couple of files:
 
 ## Part C: A simple web worker
 
-Alright let's write some code!
+Alright let's write some code! The goal here is to create a very simple form. When you submit the form, the main thread will send a message to the worker. The worker will receive and respond by sending a message back to the main thread.
+
+![https://s3.amazonaws.com/media-p.slid.es/uploads/1086608/images/6719788/EIIuqROU0AEm7Z8.png]
 
 ### Step 1: Form
 
@@ -144,21 +146,23 @@ The function takes `event` as an argument (the data from the `input` field lives
 
 In `worker.js`, add an [onmessage handler](https://developer.mozilla.org/en-US/docs/Web/API/DedicatedWorkerGlobalScope/onmessage). Similarly to `sendMessage` in the main thread, it also takes `event` as an argument.
 
-Can you `console.log` the payload?
+Can you `console.log` the payload sent from the main thread?
 
 ### Step 5: Receive messages from the worker thread
 
-The worker now receives payloads. Let's set up the main thread to receive messages from the worker. Back in `index.js`, create a new `receiveMessage` function and associate it with the [worker's instance onmessage handler](https://developer.mozilla.org/en-US/docs/Web/API/Worker/onmessage).
+The worker now receives payloads. Let's set up the main thread to receive messages from the worker.
+
+Back in `index.js`, create a new `receiveMessage` function and associate it with the [worker's instance onmessage handler](https://developer.mozilla.org/en-US/docs/Web/API/Worker/onmessage).
 
 *Hint: Before knowing if this handler really works, you'll have to do the next step.*
 
 ### Step 6: Send messages to the main thread
 
-In `worker.js`, use the [postMessage method of the worker script](https://developer.mozilla.org/en-US/docs/Web/API/DedicatedWorkerGlobalScope/postMessage) in the `onmessage` handler (I know, it's getting confusing!) to send a payload back to your app.
-
-## Part D: Keep your UI hot
+In `worker.js`, use the [postMessage method of the worker script](https://developer.mozilla.org/en-US/docs/Web/API/DedicatedWorkerGlobalScope/postMessage) in the `onmessage` handler you wrote (I know, it's getting confusing!) to send a payload back to your app.
 
 Hooray! Now, your main thread and work thread are talking to each other. Your main thread can send a payload to the worker, then the worker can process it, and send the result back!
+
+## Part D: Keep your UI hot
 
 ### Step 1: Stopwatch
 

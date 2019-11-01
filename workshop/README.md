@@ -120,6 +120,8 @@ Alright let's write some code! The goal here is to create a very simple form. Wh
 
 ### Step 1: Form
 
+You probably want to open your browser developer console for the rest of this workshop.
+
 In `index.html`, let's create a [form](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) with an ID and add a [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) and [input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) to it. We'll use this form to send messages to our web worker.
 
 ### Step 2: Instantiate the worker
@@ -246,7 +248,4 @@ And give it a try! What do you notice? Does the stopwatch freeze?
 
 ## Part E: Bundle up your web worker
 
-Well done!
-
-What to level up some more? Learn how to [use Webpack and React to bundle your web workers](../webWorkers/bundledWebWorker/src).
-
+Well done! Want to level up some more? Learn how to [use Webpack and React to bundle your web workers](../webWorkers/bundledWebWorker/src).

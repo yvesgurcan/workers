@@ -21,7 +21,7 @@ We have some slides to summarize web workers in a nutshell:
 
 ### Step 1: Visual Studio Code
 
-Download and install Visual Studio Code from here: https://code.visualstudio.com/.
+Download and install [Visual Studio Code](https://code.visualstudio.com/) (75 MB for v1.39).
 
 ### Step 2: Homebrew
 
@@ -46,7 +46,13 @@ node -v
 npm -v
 ```
 
-### Step 4: git
+If NPM is not the latest version, you can update it itself.
+
+```
+npm i -g npm
+```
+
+### Step 4: Git
 
 Install [Git](https://git-scm.com/) with Homebrew.
 
@@ -62,12 +68,20 @@ git --version
 
 ### Step 5: GitHub
 
+Create a [GitHub account](https://github.com/join).
+
 ## Part B: Set up the repository
 
-### Step 1: Create a GitHub account
+### Step 1: Fork this repository on GitHub
 
-### Step 2: Fork this repository on GitHub
+Click the "Fork" button on the [repository page](https://github.com/yvesgurcan/workers).
 
-### Step 3: Copy the repository locally
+### Step 2: Clone the repository 
+
+Use Git to copy the repository locally.
+
+```
+git clone URL_OF_CLONED_REPO
+```
 
 ## Part C: Web worker

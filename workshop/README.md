@@ -168,7 +168,7 @@ Let's take it to the next level. We're going to generate images first from the m
 
 ### Step 1: Stopwatch
 
-Let's implement a simple stopwatch in `index.html` and `index.js` that starts as soon as the page loads and increments every second. Use [setInterval](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval) and [innerHtml](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) to update your page with the new value.
+Let's implement a simple "stopwatch" in `index.html` and `index.js` that starts as soon as the page loads and increments every second. For example, add a `div` with an ID in `index.html`. Grab that `div` in `index.js` and use [setInterval](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval) and [innerHtml](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) to update your page with the new value.
 
 ### Step 2: Another input
 
@@ -176,13 +176,13 @@ In `index.html`, add an `input` tag to your form. If you want to get fancy, you 
 
 ### Step 3: Add an image
 
-In `index.html`, add an `img` tag to your page. Don't set the `src` attribute yet!
+In `index.html`, add an `img` tag with an ID to your page. Don't set the `src` attribute yet!
 
-### Step 3: Generate an image from the main thread
+### Step 4: Generate an image from the main thread
 
 Ok. This is where things get even more interesting!
 
-Let's import `createImage.js` script into `index.js` like so:
+Let's import the `createImage.js` script into `index.js` like so:
 
 ```
 import createImage from './createImage';
@@ -203,7 +203,7 @@ async function handleImageCreation(event) {
 }
 ```
 
-Make sure to grab your `img` element and define it as `image` in `index.js` for the function to work.
+Make sure to grab your `img` element with `getElementById` and define it as `image` in `index.js` for the function to work.
 
 Then, change the `onsubmit` handler of the `form` element to use `handleImageCreation`.
 

@@ -213,11 +213,40 @@ Try entering bigger numbers. Look at the stopwatch you created. What do you noti
 
 ### Step 4: Generate an image in the worker thread
 
+That was fun, but creating this image in the main thread froze our UI, sometimes for a few seconds, sometimes forever!
+
+Let's use our worker instead so that the the browser of the user does not blow up when creating the image.
+
+First, let's modify `handleImageCreation` to send messages to our worker:
+
+```
+function handleImageCreation(event) {
+    event.preventDefault();
+    const width = event.target[0].value;
+    const height = event.target[1].value;
+    worker.postMessage({ width, height });
+}
+```
+
+Then, update `receiveMessage` to handle the image returned by the worker:
+
+```
+function receiveMessage(event) {
+    console.log('Message received from worker thread', event.data);
+    if (blob) {
+        const imageData = URL.createObjectURL(blob);
+        image.src = imageData;
+    }
+}
+```
+
+There's some commented code in `worker.js`. Remove the `/*` and `*/`.
+
+And give it a try! What do you notice? Does the stopwatch freeze?
+
 ## Part E: Bundle up your web worker
 
-### Step 1: Webpack all the things
+Well done!
 
-### Step 2: 
-
-### Step 3:
+What to level up some more? Learn how to [use Webpack and React to bundle your web workers](../webWorkers/bundledWebWorker/src).
 

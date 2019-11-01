@@ -16,8 +16,6 @@ const generateRandomRGBValues = ({ height = 200, width = 200 }) => {
 export default async (width, height) => {
     console.log(MAIN_THREAD, 'received data', { width, height });
     try {
-        const start = new Date();
-
         const pixels = generateRandomRGBValues({ height, width });
 
         const canvas = document.createElement('canvas');
@@ -44,10 +42,6 @@ export default async (width, height) => {
         let blob = await new Promise(resolve =>
             canvas.toBlob(resolve, 'image/png')
         );
-
-        const end = new Date();
-
-        const timeToGenerate = `${((end - start) / 1000).toFixed(1)}s`;
 
         console.log(MAIN_THREAD, 'done', { blob });
 

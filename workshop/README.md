@@ -116,7 +116,7 @@ In the `workshop/` directory, you will find a couple of files:
 
 Alright let's write some code! The goal here is to create a very simple form. When you submit the form, the main thread will send a message to the worker. The worker will receive and respond by sending a message back to the main thread.
 
-![https://s3.amazonaws.com/media-p.slid.es/uploads/1086608/images/6719788/EIIuqROU0AEm7Z8.png]
+!(https://s3.amazonaws.com/media-p.slid.es/uploads/1086608/images/6719788/EIIuqROU0AEm7Z8.png)
 
 ### Step 1: Form
 

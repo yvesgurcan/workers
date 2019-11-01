@@ -19,6 +19,8 @@ We have some slides to summarize web workers in a nutshell:
 
 ## Part A: Set up your environment
 
+For macOS.
+
 ### Step 1: Visual Studio Code
 
 Download and install [Visual Studio Code](https://code.visualstudio.com/) (75 MB for v1.39).
@@ -84,4 +86,29 @@ Use Git to copy the repository locally.
 git clone URL_OF_CLONED_REPO
 ```
 
+### Step 3: Install and start development server
+
+Enter the directory and run NPM commands.
+
+```
+cd PATH_TO_LOCAL_REPO/workshop
+npm i
+npm start
+```
+
+Now browse to http://localhost:8080. You should see this message:
+
+```
+It works!
+```
+
+In the `workshop/` directory, you will find a couple of files:
+* `package.json` and `package-lock.json` is where NPM keeps track of all the project dependencies.
+* `webpack.config.js` is the file that configures our development server.
+* `README.md` contains the instructions you are reading.
+* `.prettierrc` configures Prettier (a linter) if you use it.
+* `src/` is the folder where the source code of this application lives. Right now, it contains `index.html` and `inded.js`, which respectively contain HTML and JavaScript code.
+
 ## Part C: Web worker
+
+

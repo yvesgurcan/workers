@@ -108,7 +108,37 @@ In the `workshop/` directory, you will find a couple of files:
 * `README.md` contains the instructions you are reading.
 * `.prettierrc` configures Prettier (a linter) if you use it.
 * `src/` is the folder where the source code of this application lives. Right now, it contains `index.html` and `inded.js`, which respectively contain HTML and JavaScript code.
+* `public/worker.js` is the file where the web worker lives. The worker should be separate from the main thread and be available as a public URL (unless you use a special Webpack loader).
 
 ## Part C: Web worker
 
+### Step 1: Form
+
+In `index.html`, let's create a [form](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) with an ID and add a [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) and [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) to it. We'll use this form to send messages to our web worker.
+
+### Step 2: Instantiate the worker
+
+In `index.js`, instantiate your worker thanks to the [Worker object](https://developer.mozilla.org/en-US/docs/Web/API/Worker).
+
+Example:
+
+```
+const worker = new Worker('public/worker.js');
+```
+
+If you did it right, you'll see a message from the worker thread in your console 🙂.
+
+### Step 3: postMessage
+
+In `index.js`, create a `sendMessage` function. Define this function as an [onsubmit handler](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onsubmit) for the form.
+
+The function takes `event` as an argument (the form data lives somewhere in `event.target`, find it!) and uses [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage) to send the data to the worker. 
+
+*Hint: You should probably use [preventDefault](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) in `sendMessage()` to prevent the page from reloading when you submit the form.*
+
+### Step 3: 
+
+In `worker.js`, add an [onmessage handler](https://developer.mozilla.org/en-US/docs/Web/API/DedicatedWorkerGlobalScope/onmessage).
+
+Similarly to `sendMessage` in the main thread, it also takes `event` as an argument. Can you `console.log` the payload?
 

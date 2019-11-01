@@ -109,7 +109,7 @@ In the `workshop/` directory, you will find a couple of files:
 * `webpack.config.js` is the file that configures how the development server works.
 * `README.md` contains the instructions you are reading.
 * `.prettierrc` configures [Prettier](https://prettier.io/) (a linter) if you use it.
-* `src/` is the folder where the source code of this application lives. Right now, it contains `index.html` and `inded.js`, which respectively contain HTML and JavaScript code.
+* `src/` is the folder where the source code of this application lives. Right now, it contains `index.html` and `index.js`, which respectively contain HTML and JavaScript code. It also contains `createImage.js`, which will be useful later!
 * `public/worker.js` is the file where the web worker lives. The worker should be separate from the main thread and be available as a public URL (unless you use a special Webpack loader).
 
 ## Part C: A simple web worker
@@ -160,9 +160,11 @@ Back in `index.js`, create a new `receiveMessage` function and associate it with
 
 In `worker.js`, use the [postMessage method of the worker script](https://developer.mozilla.org/en-US/docs/Web/API/DedicatedWorkerGlobalScope/postMessage) in the `onmessage` handler you wrote (I know, it's getting confusing!) to send a payload back to your app.
 
-Hooray! Now, your main thread and work thread are talking to each other. Your main thread can send a payload to the worker, then the worker can process it, and send the result back!
+Hooray! 🎉 Now, your main thread and work thread are talking to each other. Your main thread can send a payload to the worker, then the worker can process it, and send the result back!
 
 ## Part D: Keep your UI hot
+
+Let's take it to the next level. We're going to generate images first from the main thread and then from the worker thread and then compare performances.
 
 ### Step 1: Stopwatch
 
@@ -170,9 +172,44 @@ Let's implement a simple stopwatch in `index.html` and `index.js` that starts as
 
 ### Step 2: Another input
 
+In `index.html`, add an `input` tag to your form. If you want to get fancy, you can also `label` the two fields with `Width` and `Height`.
 
+### Step 3: Add an image
 
-### Step 3: Generate an image in the main thread
+In `index.html`, add an `img` tag to your page. Don't set the `src` attribute yet!
+
+### Step 3: Generate an image from the main thread
+
+Ok. This is where things get even more interesting!
+
+Let's import `createImage.js` script into `index.js` like so:
+
+```
+import createImage from './createImage';
+```
+
+We're going to duplicate the `sendMessage` function to create a new `handleImageCreation` function. Here is the code of that function:
+
+```
+async function handleImageCreation(event) {
+    event.preventDefault();
+    const width = event.target[0].value;
+    const height = event.target[0].value;
+    const blob = await createImage(width, height);
+    if (blob) {
+        const imageData = URL.createObjectURL(blob);
+        image.src = imageData;
+    }
+}
+```
+
+Make sure to grab your `img` element and define it as `image` in `index.js` for the function to work.
+
+Then, change the `onsubmit` handler of the `form` element to use `handleImageCreation`.
+
+Ready for fireworks? In your browser, enter a width and height and submit the form.
+
+Try entering bigger numbers. Look at the stopwatch you created. What do you notice about the time?
 
 ### Step 4: Generate an image in the worker thread
 

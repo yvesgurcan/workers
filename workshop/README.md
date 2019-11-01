@@ -13,7 +13,7 @@ We have some slides to summarize web workers in a nutshell:
 
 ## Some use cases
 
-- [Create images with canvas.](https://github.com/yvesgurcan/workers/blob/master/webWorkers/postMessage/public/webWorker2.js)
+- [Processing images.](https://github.com/yvesgurcan/workers/blob/master/webWorkers/postMessage/public/webWorker2.js)
 - [Parse binary files.](https://github.com/yvesgurcan/wadjs/tree/develop/app/webWorkers)
 - [Generate CSV files.](https://github.com/markroper/web-worker-csv-parser/blob/master/js/FileParsingWorker.js)
 
@@ -118,7 +118,7 @@ Alright let's write some code!
 
 ### Step 1: Form
 
-In `index.html`, let's create a [form](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) with an ID and add a [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) and [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) to it. We'll use this form to send messages to our web worker.
+In `index.html`, let's create a [form](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) with an ID and add a [button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) and [input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) to it. We'll use this form to send messages to our web worker.
 
 ### Step 2: Instantiate the worker
 
@@ -132,24 +132,51 @@ const worker = new Worker('public/worker.js');
 
 If you did it right, you'll see a message from the worker thread in your console 🙂
 
-### Step 3: postMessage
+### Step 3: Send messages to the worker thread
 
 In `index.js`, create a `sendMessage` function. Define this function as an [onsubmit handler](https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onsubmit) for the form.
 
-The function takes `event` as an argument (the form data lives somewhere in `event.target`, find it!) and uses [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage) to send the data to the worker. 
+The function takes `event` as an argument (the data from the `input` field lives somewhere in `event.target`, find it!) and uses [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage) to send the data to the worker. 
 
 *Hint: You should probably use [preventDefault](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) in `sendMessage()` to prevent the page from reloading when you submit the form.*
 
-### Step 3: 
+### Step 4: Receive messages from the main thread
 
 In `worker.js`, add an [onmessage handler](https://developer.mozilla.org/en-US/docs/Web/API/DedicatedWorkerGlobalScope/onmessage). Similarly to `sendMessage` in the main thread, it also takes `event` as an argument.
 
 Can you `console.log` the payload?
 
+### Step 5: Receive messages from the worker thread
+
+The worker now receives payloads. Let's set up the main thread to receive messages from the worker. Back in `index.js`, create a new `receiveMessage` function and associate it with the [worker's instance onmessage handler](https://developer.mozilla.org/en-US/docs/Web/API/Worker/onmessage).
+
+*Hint: Before knowing if this handler really works, you'll have to do the next step.*
+
+### Step 6: Send messages to the main thread
+
+In `worker.js`, use the [postMessage method of the worker script](https://developer.mozilla.org/en-US/docs/Web/API/DedicatedWorkerGlobalScope/postMessage) in the `onmessage` handler (I know, it's getting confusing!) to send a payload back to your app.
+
 ## Part D: Keep your UI hot
+
+Hooray! Now, your main thread and work thread are talking to each other. Your main thread can send a payload to the worker, then the worker can process it, and send the result back!
 
 ### Step 1: Stopwatch
 
 Let's implement a simple stopwatch in `index.html` and `index.js` that starts as soon as the page loads and increments every second. Use [setInterval](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval) and [innerHtml](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) to update your page with the new value.
 
-## Step 2: Break it!
+### Step 2: Another input
+
+
+
+### Step 3: Generate an image in the main thread
+
+### Step 4: Generate an image in the worker thread
+
+## Part E: Bundle up your web worker
+
+### Step 1: Webpack all the things
+
+### Step 2: 
+
+### Step 3:
+

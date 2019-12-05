@@ -2,7 +2,7 @@
 
 Bienvenue !
 
-Follow this workshop on [Twitch](https://www.twitch.tv/yves_gurcan).
+Watch this workshop on [Twitch](https://www.twitch.tv/videos/502607581) ([channel](https://www.twitch.tv/yves_gurcan)).
 
 ## How do web workers work?
 

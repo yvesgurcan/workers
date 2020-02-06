@@ -1,16 +1,5 @@
 # Web Worker Workshop
 
-Bienvenue !
-
-Watch this workshop on [Twitch](https://www.twitch.tv/videos/502607581) ([channel](https://www.twitch.tv/yves_gurcan)).
-
-## How do web workers work?
-
-We have some slides to summarize web workers in a nutshell:
-
-* [Follow the presentation live as I'm going through the slides.](https://slides.com/yvesgurcan/deck/live#)
-* or [look at the slides on your own time.](https://slides.com/yvesgurcan/deck#/)
-
 ## Some use cases
 
 - [Processing images.](https://github.com/yvesgurcan/workers/blob/master/webWorkers/postMessage/public/webWorker2.js)

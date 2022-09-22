@@ -29,7 +29,7 @@ export default class App extends Component {
     this.startTimer();
     if ("Worker" in window) {
       [0, 1, 2].map((i) => {
-        this[`webWorker${i}`] = new Worker(`public/webWorker${i}.js`);
+        this[`webWorker${i}`] = new Worker(`../public/webWorker${i}.js`);
         this[`webWorker${i}`].onmessage = this.handleResponse;
       });
     }
